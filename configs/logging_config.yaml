@@ -1,0 +1,34 @@
+# AI PINN 日志配置
+
+# 全局日志级别 (DEBUG, INFO, WARNING, ERROR)
+level: INFO
+
+# 控制台日志配置
+console:
+  enabled: true
+  level: INFO
+  structured: false  # 控制台使用简单格式
+
+# 文件日志配置
+file:
+  enabled: true
+  level: DEBUG
+  directory: logs
+  filename: ai_pinn.log
+  max_size_mb: 10  # 单个日志文件最大大小(MB)
+  backup_count: 5   # 保留的备份文件数量
+  structured: true  # 文件使用JSON格式
+
+# 日志轮转配置
+rotation:
+  enabled: true
+  when: midnight  # 轮转时间: midnight, daily, weekly, etc.
+  interval: 1      # 轮转间隔
+  backup_count: 5   # 保留的备份文件数量
+  compress: true    # 是否压缩备份文件
+
+# 日志聚合配置
+aggregation:
+  enabled: true
+  search_index: true  # 是否创建搜索索引
+  retention_days: 30   # 日志保留天数

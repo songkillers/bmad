@@ -1,0 +1,104 @@
+<story-context id="1-1-project-initialization" v="1.0">
+  <metadata>
+    <epicId>1</epicId>
+    <storyId>1</storyId>
+    <title>项目初始化和结构设置</title>
+    <status>drafted</status>
+    <generatedAt>2025-11-22T20:38:00Z</generatedAt>
+    <generator>BMAD Story Context Workflow</generator>
+    <sourceStoryPath>docs/sprint-artifacts/1-1-project-initialization.md</sourceStoryPath>
+  </metadata>
+
+  <story>
+    <asA>开发人员</asA>
+    <iWant>有一个完整的项目结构和依赖管理</iWant>
+    <soThat>开始开发工作</soThat>
+    <tasks>- 创建项目目录结构 (AC: 1)
+  - [ ] 创建src/目录及子目录结构
+  - [ ] 创建configs/目录及子目录结构
+  - [ ] 创建experiments/目录及子目录结构
+  - [ ] 创建tests/目录及子目录结构
+  - [ ] 创建docs/目录及子目录结构
+- 配置项目依赖管理 (AC: 2)
+  - [ ] 创建requirements.txt文件
+  - [ ] 创建requirements-dev.txt文件
+  - [ ] 创建setup.py文件
+  - [ ] 创建pyproject.toml文件
+- 设置开发环境 (AC: 3)
+  - [ ] 创建虚拟环境配置脚本
+  - [ ] 配置环境变量设置
+  - [ ] 创建Docker开发环境
+- 配置代码质量工具 (AC: 4)
+  - [ ] 配置black代码格式化
+  - [ ] 配置flake8代码检查
+  - [ ] 配置mypy类型检查
+  - [ ] 设置pre-commit钩子</tasks>
+  </story>
+
+  <acceptanceCriteria>1. Given 项目初始化脚本, When 执行脚本, Then 创建完整的目录结构
+2. Given 项目初始化脚本, When 执行脚本, Then 安装所有必要的依赖
+3. Given 项目初始化脚本, When 执行脚本, Then 配置开发环境
+4. Given 项目初始化脚本, When 执行脚本, Then 设置代码质量工具</acceptanceCriteria>
+
+  <artifacts>
+    <docs>
+      <doc>
+        <path>docs/architecture.md</path>
+        <title>AI PINN - 架构文档</title>
+        <section>项目结构</section>
+        <snippet>定义了完整的项目目录结构，包括src/、configs/、experiments/、tests/等核心目录</snippet>
+      </doc>
+      <doc>
+        <path>docs/epics.md</path>
+        <title>AI PINN - 史诗和用户故事</title>
+        <section>故事1.1: 项目初始化和结构设置</section>
+        <snippet>定义了项目初始化和结构设置的用户故事、验收标准和技术笔记</snippet>
+      </doc>
+      <doc>
+        <path>docs/sprint-artifacts/tech-spec-epic-1.md</path>
+        <title>Epic Technical Specification: 基础设施和项目设置</title>
+        <section>项目结构对齐</section>
+        <snippet>提供了项目初始化的技术细节，包括目录结构、依赖管理和开发环境设置</snippet>
+      </doc>
+    </docs>
+    <code>
+      <!-- No existing code artifacts found for this story -->
+    </code>
+    <dependencies>
+      <ecosystem name="python">
+        <package name="PyYAML" version="6.0+" purpose="配置文件解析" />
+        <package name="pytest" version="7.4+" purpose="测试框架" />
+        <package name="black" version="23.0+" purpose="代码格式化" />
+        <package name="flake8" version="6.0+" purpose="代码检查" />
+        <package name="mypy" version="1.0+" purpose="类型检查" />
+        <package name="Docker" version="24.0+" purpose="容器化环境" />
+      </ecosystem>
+    </dependencies>
+  </artifacts>
+
+  <constraints>
+    - 项目结构应遵循架构文档中定义的目录结构
+    - 依赖版本应符合架构文档中的要求
+    - 代码质量工具配置应遵循架构文档中的编码规范
+    - Docker环境应支持CPU和GPU版本
+    - 按照架构文档创建完整的目录结构
+    - 确保所有必要的__init__.py文件存在
+    - 配置文件应放在configs/目录下
+    - 测试文件应放在tests/目录下
+  </constraints>
+
+  <interfaces>
+    <!-- No existing interfaces identified for this story -->
+  </interfaces>
+
+  <tests>
+    <standards>使用pytest作为测试框架，遵循架构文档中定义的测试模式和结构。测试应放在tests/目录下，并按照功能模块组织。</standards>
+    <locations>tests/目录及其子目录，按功能模块组织测试文件</locations>
+    <ideas>
+      <test idea="test_directory_structure" ac="1">验证执行初始化脚本后是否创建了完整的目录结构</test idea>
+      <test idea="test_dependencies_installed" ac="2">验证所有必要的依赖是否正确安装</test idea>
+      <test idea="test_dev_environment_configured" ac="3">验证开发环境是否正确配置</test idea>
+      <test idea="test_code_quality_tools" ac="4">验证代码质量工具是否正确设置</test idea>
+    </ideas>
+  </tests>
+</story-context>

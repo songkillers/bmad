@@ -1,0 +1,19 @@
+{
+  "history": [
+    {
+      "timestamp": "2025-11-23T14:15:47.499986",
+      "description": "\u52a0\u8f7d\u914d\u7f6e",
+      "config": {
+        "model": {
+          "input_dim": 3,
+          "output_dim": 2,
+          "type": "pinn"
+        },
+        "training": {
+          "epochs": 500,
+          "learning_rate": 0.01
+        }
+      }
+    }
+  ]
+}

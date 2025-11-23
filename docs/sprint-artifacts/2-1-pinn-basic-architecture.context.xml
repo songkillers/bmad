@@ -1,0 +1,121 @@
+<story-context id=".bmad/bmm/workflows/4-implementation/story-context/template" v="1.0">
+  <metadata>
+    <epicId>2</epicId>
+    <storyId>1</storyId>
+    <title>PINN基础架构</title>
+    <status>drafted</status>
+    <generatedAt>2025-11-22T21:40:00Z</generatedAt>
+    <generator>BMAD Story Context Workflow</generator>
+    <sourceStoryPath>docs/sprint-artifacts/2-1-pinn-basic-architecture.md</sourceStoryPath>
+  </metadata>
+
+  <story>
+    <asA>研究人员</asA>
+    <iWant>有PINN网络的基础架构</iWant>
+    <soThat>以便开始构建物理信息神经网络</soThat>
+    <tasks>- [ ] 创建PINN基础类 (AC: 1)
+  - [ ] 实现BasePINN类，继承PyTorch nn.Module
+  - [ ] 支持可配置的网络层数和神经元数量
+  - [ ] 实现多种激活函数选择（tanh, relu, sigmoid等）
+- [ ] 实现前向传播功能 (AC: 1)
+  - [ ] 确保输入数据正确处理
+  - [ ] 支持批量输入处理
+- [ ] 集成自动微分功能 (AC: 1)
+  - [ ] 确保梯度可以自动计算
+  - [ ] 实现物理约束接口预留</tasks>
+  </story>
+
+  <acceptanceCriteria>1. Given PINN基础类
+   When 创建网络实例
+   Then 支持自定义网络架构
+   And 支持多种激活函数
+   And 提供前向传播
+   And 支持自动微分</acceptanceCriteria>
+
+  <artifacts>
+    <docs>
+      <doc>
+        <path>docs/architecture.md</path>
+        <title>AI PINN - 架构文档</title>
+        <section>模型层</section>
+        <snippet>模型层包含PINN相关模型，实现物理信息神经网络的核心功能，包括基础类、扩散方程PINN、边界条件处理和物理约束层。</snippet>
+      </doc>
+      <doc>
+        <path>docs/sprint-artifacts/tech-spec-epic-2.md</path>
+        <title>Epic Technical Specification: PINN核心求解器</title>
+        <section>详细设计</section>
+        <snippet>BasePINN作为PINN基类，定义通用接口。DiffusionPINN继承BasePINN，实现对流扩散方程的物理信息神经网络。</snippet>
+      </doc>
+      <doc>
+        <path>docs/epics.md</path>
+        <title>AI PINN - 史诗和用户故事</title>
+        <section>故事2.1: PINN基础架构</section>
+        <snippet>作为研究人员，我希望有PINN网络的基础架构，以便开始构建物理信息神经网络。</snippet>
+      </doc>
+    </docs>
+    <code>
+      <artifact>
+        <path>src/ai_pinn/models/__init__.py</path>
+        <kind>module</kind>
+        <symbol>models package</symbol>
+        <lines>1-10</lines>
+        <reason>现有模型包初始化文件，需要添加PINN模块导入</reason>
+      </artifact>
+      <artifact>
+        <path>src/ai_pinn/config/loader.py</path>
+        <kind>service</kind>
+        <symbol>load_config</symbol>
+        <lines>1-50</lines>
+        <reason>配置加载服务，可用于加载PINN网络配置</reason>
+      </artifact>
+      <artifact>
+        <path>src/ai_pinn/utils/device_utils.py</path>
+        <kind>utility</kind>
+        <symbol>get_device</symbol>
+        <lines>1-30</lines>
+        <reason>设备管理工具，可用于PINN模型的设备管理</reason>
+      </artifact>
+    </code>
+    <dependencies>
+      <python>
+        <package name="torch" version="2.0+" />
+        <package name="numpy" version="1.24+" />
+        <package name="pyyaml" version="6.0+" />
+      </python>
+    </dependencies>
+  </artifacts>
+
+  <constraints>
+    <constraint>遵循PyTorch模块设计模式，继承nn.Module</constraint>
+    <constraint>实现与整体架构一致的配置管理系统</constraint>
+    <constraint>支持设备管理（CPU/GPU切换）</constraint>
+    <constraint>集成日志记录功能</constraint>
+    <constraint>使用类型提示和文档字符串</constraint>
+  </constraints>
+
+  <interfaces>
+    <interface>
+      <name>BasePINN</name>
+      <kind>class interface</kind>
+      <signature>class BasePINN(nn.Module)</signature>
+      <path>src/ai_pinn/models/pinn/base_pinn.py</path>
+    </interface>
+    <interface>
+      <name>forward</name>
+      <kind>method signature</kind>
+      <signature>def forward(self, x: torch.Tensor) -> torch.Tensor</signature>
+      <path>src/ai_pinn/models/pinn/base_pinn.py</path>
+    </interface>
+  </interfaces>
+
+  <tests>
+    <standards>使用pytest框架进行单元测试，确保每个公共方法都有测试覆盖。测试应包括正常情况、边界情况和错误处理。使用mock对象隔离依赖项，确保测试的独立性和可重复性。</standards>
+    <locations>tests/unit/test_models/test_pinn/</locations>
+    <ideas>
+      <test idea="test_base_pinn_initialization" ac="1">测试BasePINN类的初始化，验证网络结构正确设置</test>
+      <test idea="test_forward_pass" ac="1">测试前向传播功能，验证输入输出形状正确</test>
+      <test idea="test_activation_functions" ac="1">测试不同激活函数的设置和应用</test>
+      <test idea="test_automatic_differentiation" ac="1">测试自动微分功能，验证梯度计算正确</test>
+    </ideas>
+  </tests>
+</story-context>

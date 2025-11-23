@@ -1,0 +1,143 @@
+# Workflow Status for ai PINN Project
+
+# This tracks progress through BMM methodology Analysis, Planning, and Solutioning phases.
+# Implementation phase is tracked separately in sprint-status.yaml
+
+# STATUS DEFINITIONS:
+# ==================
+# Initial Status (before completion):
+#   - required: Must be completed to progress
+#   - optional: Can be completed but not required
+#   - recommended: Strongly suggested but not required
+#   - conditional: Required only if certain conditions met (e.g., if_has_ui)
+#
+# Completion Status:
+#   - {file-path}: File created/found (e.g., "docs/product-brief.md")
+#   - skipped: Optional/conditional workflow that was skipped
+
+generated: "2025-11-22T18:36:00.000Z"
+project: "ai PINN"
+project_type: "科学计算项目"
+selected_track: "method"
+field_type: "greenfield"
+workflow_path: ".bmad/bmm/workflows/workflow-status/paths/method-greenfield.yaml"
+workflow_status:
+  phases:
+    - phase: 0
+      name: "Discovery (Optional)"
+      status: "pending"
+      workflows:
+        - id: "brainstorm-project"
+          name: "Brainstorm Project"
+          agent: "analyst"
+          command: "brainstorm-project"
+          status: "docs/bmm-brainstorming-session-2025-11-22.md"
+          output: "docs/bmm-brainstorming-session-2025-11-22.md"
+          note: "Creative exploration and ideation for PINN project - COMPLETED: Selected groundwater pollution diffusion with MC Dropout + PINN uncertainty quantification"
+          
+        - id: "research"
+          name: "Research"
+          agent: "analyst"
+          command: "research"
+          status: "docs/bmm-research-technical-2025-11-22.md"
+          output: "docs/bmm-research-technical-2025-11-22.md"
+          note: "Technical and competitive analysis for PINN scientific computing - COMPLETED: Selected custom PyTorch + MC Dropout approach"
+          
+        - id: "product-brief"
+          name: "Product Brief"
+          agent: "analyst"
+          command: "product-brief"
+          status: "docs/product-brief-2025-11-22.md"
+          output: "docs/product-brief-2025-11-22.md"
+          note: "Strategic product planning for the AI PINN project - COMPLETED: Comprehensive product brief with vision, market analysis, and implementation roadmap"
+          
+    - phase: 1
+      name: "Planning"
+      status: "pending"
+      workflows:
+        - id: "prd"
+          name: "Product Requirements Document"
+          agent: "pm"
+          command: "prd"
+          status: "PRD.md"
+          output: "PRD.md"
+          note: "Product Requirements Document with FRs and NFRs for PINN system - COMPLETED: 40 functional requirements and comprehensive non-functional requirements for scientific computing project"
+          
+        - id: "validate-prd"
+          name: "Validate PRD"
+          agent: "pm"
+          command: "validate-prd"
+          status: "optional"
+          output: ""
+          note: "Quality check for PRD completeness"
+          
+        - id: "create-design"
+          name: "Create Design"
+          agent: "ux-designer"
+          command: "create-design"
+          status: "conditional"
+          output: ""
+          note: "Determined after PRD - user/agent decides if needed"
+          
+    - phase: 2
+      name: "Solutioning"
+      status: "pending"
+      workflows:
+        - id: "create-architecture"
+          name: "Create Architecture"
+          agent: "architect"
+          command: "create-architecture"
+          status: "docs/architecture.md"
+          output: "docs/architecture.md"
+          note: "Complete system design for PINN scientific computing project - COMPLETED: Comprehensive architecture with modular design, technology stack decisions, and implementation patterns"
+          
+        - id: "create-epics-and-stories"
+          name: "Create Epics and Stories"
+          agent: "pm"
+          command: "create-epics-and-stories"
+          status: "docs/epics.md"
+          output: "docs/epics.md"
+          note: "Break down PRD into implementable epics and stories with full context - COMPLETED: 9 epics with 45 user stories covering all 40 functional requirements with BDD acceptance criteria"
+          
+        - id: "test-design"
+          name: "Test Design"
+          agent: "tea"
+          command: "test-design"
+          status: "recommended"
+          output: ""
+          note: "System-level testability review for PINN project"
+          
+        - id: "validate-architecture"
+          name: "Validate Architecture"
+          agent: "architect"
+          command: "validate-architecture"
+          status: "optional"
+          output: ""
+          note: "Quality check for architecture completeness"
+          
+        - id: "implementation-readiness"
+          name: "Implementation Readiness"
+          agent: "architect"
+          command: "implementation-readiness"
+          status: "docs/implementation-readiness-report-2025-11-22.md"
+          output: "docs/implementation-readiness-report-2025-11-22.md"
+          note: "Validates PRD + UX + Architecture + Epics + Testability cohesion - COMPLETED: Ready with conditions for implementation phase"
+          
+    - phase: 3
+      name: "Implementation"
+      status: "pending"
+      workflows:
+        - id: "sprint-planning"
+          name: "Sprint Planning"
+          agent: "sm"
+          command: "sprint-planning"
+          status: "required"
+          output: ""
+          note: "Creates sprint plan - subsequent work tracked there"
+
+next_workflow:
+  id: "sprint-planning"
+  name: "Sprint Planning"
+  agent: "sm"
+  command: "sprint-planning"
+  reason: "Next step in Implementation phase - creates sprint plan and initializes development tracking"

@@ -1,0 +1,25 @@
+# Base configuration for AI PINN project
+
+project:
+  name: "AI PINN"
+  version: "0.1.0"
+  description: "Physics-Informed Neural Networks for Groundwater Pollution Diffusion"
+
+# Random seed for reproducibility
+random_seed: 42
+
+# Device configuration (auto, cpu, cuda)
+device: "auto"
+
+# Logging configuration
+logging:
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  file: "logs/ai_pinn.log"
+  
+# Data paths
+paths:
+  data_dir: "data/"
+  output_dir: "experiments/results/"
+  model_dir: "experiments/models/"
+  log_dir: "logs/"

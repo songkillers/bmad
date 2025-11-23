@@ -1,0 +1,133 @@
+<story-context id=".bmad/bmm/workflows/4-implementation/story-context/template" v="1.0">
+  <metadata>
+    <epicId>2</epicId>
+    <storyId>2</storyId>
+    <title>二维对流扩散方程求解</title>
+    <status>drafted</status>
+    <generatedAt>2025-11-22T21:48:00Z</generatedAt>
+    <generator>BMAD Story Context Workflow</generator>
+    <sourceStoryPath>docs/sprint-artifacts/2-2-2d-convection-diffusion.md</sourceStoryPath>
+  </metadata>
+
+  <story>
+    <asA>研究人员</asA>
+    <iWant>系统能够求解二维地下水对流扩散方程</iWant>
+    <soThat>以便模拟污染扩散过程</soThat>
+    <tasks>- [ ] 创建DiffusionPINN类 (AC: 1)
+  - [ ] 继承BasePINN类
+  - [ ] 实现物理损失函数
+  - [ ] 实现边界条件处理
+- [ ] 实现前向传播功能 (AC: 1)
+  - [ ] 实现浓度预测
+  - [ ] 处理输入参数
+  - [ ] 返回预测结果
+- [ ] 实现质量守恒约束 (AC: 1)
+  - [ ] 添加质量守恒项到损失函数
+  - [ ] 验证质量守恒满足
+- [ ] 支持时间演化 (AC: 1)
+  - [ ] 处理时间维度
+  - [ ] 实现时间积分
+  - [ ] 支持长时间模拟
+- [ ] 提供收敛检查 (AC: 1)
+  - [ ] 实现收敛指标计算
+  - [ ] 监控训练过程
+  - [ ] 提供收敛判断</tasks>
+  </story>
+
+  <acceptanceCriteria>1. Given 对流扩散方程参数
+   When 执行求解
+   Then 计算浓度分布
+   And 满足质量守恒
+   And 支持时间演化
+   And 提供收敛检查</acceptanceCriteria>
+
+  <artifacts>
+    <docs>
+      <doc>
+        <path>docs/architecture.md</path>
+        <title>AI PINN - 架构文档</title>
+        <section>模型层</section>
+        <snippet>模型层包含PINN相关模型，实现物理信息神经网络的核心功能，包括基础类、扩散方程PINN、边界条件处理和物理约束层。</snippet>
+      </doc>
+      <doc>
+        <path>docs/sprint-artifacts/tech-spec-epic-2.md</path>
+        <title>Epic Technical Specification: PINN核心求解器</title>
+        <section>详细设计</section>
+        <snippet>DiffusionPINN继承BasePINN，实现对流扩散方程的物理信息神经网络。需要实现物理损失函数，包含对流项、扩散项和源项。</snippet>
+      </doc>
+      <doc>
+        <path>docs/epics.md</path>
+        <title>AI PINN - 史诗和用户故事</title>
+        <section>故事2.2: 二维对流扩散方程求解</section>
+        <snippet>作为研究人员，我希望系统能够求解二维地下水对流扩散方程，以便模拟污染扩散过程。</snippet>
+      </doc>
+    </docs>
+    <code>
+      <artifact>
+        <path>src/ai_pinn/models/pinn/base_pinn.py</path>
+        <kind>class</kind>
+        <symbol>BasePINN</symbol>
+        <lines>1-267</lines>
+        <reason>BasePINN基类，DiffusionPINN将继承此类</reason>
+      </artifact>
+      <artifact>
+        <path>src/ai_pinn/utils/device_utils.py</path>
+        <kind>utility</kind>
+        <symbol>get_device</symbol>
+        <lines>1-30</lines>
+        <reason>设备管理工具，可用于PINN模型的设备管理</reason>
+      </artifact>
+      <artifact>
+        <path>src/ai_pinn/config/loader.py</path>
+        <kind>service</kind>
+        <symbol>load_config</symbol>
+        <lines>1-50</lines>
+        <reason>配置加载服务，可用于加载PINN网络配置</reason>
+      </artifact>
+    </code>
+    <dependencies>
+      <python>
+        <package name="torch" version="2.0+" />
+        <package name="numpy" version="1.24+" />
+        <package name="pyyaml" version="6.0+" />
+      </python>
+    </dependencies>
+  </artifacts>
+
+  <constraints>
+    <constraint>遵循PyTorch模块设计模式，继承BasePINN</constraint>
+    <constraint>实现二维对流扩散方程的物理约束</constraint>
+    <constraint>支持多种边界条件类型</constraint>
+    <constraint>支持时间依赖的求解</constraint>
+    <constraint>集成现有配置管理系统</constraint>
+    <constraint>使用类型提示和文档字符串</constraint>
+  </constraints>
+
+  <interfaces>
+    <interface>
+      <name>DiffusionPINN</name>
+      <kind>class interface</kind>
+      <signature>class DiffusionPINN(BasePINN)</signature>
+      <path>src/ai_pinn/models/pinn/diffusion_pinn.py</path>
+    </interface>
+    <interface>
+      <name>compute_physics_loss</name>
+      <kind>method signature</kind>
+      <signature>def compute_physics_loss(self, x: torch.Tensor, **kwargs: Any) -> torch.Tensor</signature>
+      <path>src/ai_pinn/models/pinn/diffusion_pinn.py</path>
+    </interface>
+  </interfaces>
+
+  <tests>
+    <standards>使用pytest框架进行单元测试，确保每个公共方法都有测试覆盖。测试应包括正常情况、边界情况和错误处理。使用mock对象隔离依赖项，确保测试的独立性和可重复性。</standards>
+    <locations>tests/unit/test_models/test_pinn/</locations>
+    <ideas>
+      <test idea="test_diffusion_pinn_initialization" ac="1">测试DiffusionPINN类的初始化，验证网络结构正确设置</test>
+      <test idea="test_physics_loss_computation" ac="1">测试物理损失函数计算，验证对流扩散方程实现正确</test>
+      <test idea="test_forward_pass" ac="1">测试前向传播功能，验证输入输出形状正确</test>
+      <test idea="test_mass_conservation" ac="1">测试质量守恒约束，验证物理损失包含质量守恒项</test>
+      <test idea="test_time_evolution" ac="1">测试时间演化功能，验证时间依赖求解正确</test>
+      <test idea="test_convergence_check" ac="1">测试收敛检查功能，验证收敛指标计算正确</test>
+    </ideas>
+  </tests>
+</story-context>

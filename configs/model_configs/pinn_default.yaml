@@ -1,0 +1,17 @@
+# Default PINN model configuration
+
+model:
+  input_dim: 3  # x, y, t coordinates
+  output_dim: 1  # concentration
+  hidden_layers: [50, 50, 50]
+  activation: "tanh"
+
+training:
+  learning_rate: 0.001
+  batch_size: 1000
+  epochs: 1000
+  
+loss_weights:
+  physics: 1.0
+  boundary: 1.0
+  initial: 1.0

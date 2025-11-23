@@ -1,0 +1,116 @@
+# generated: 2025-11-22T20:27:00Z
+# project: ai PINN
+# project_key: ai-pinn
+# tracking_system: file-system
+# story_location: docs/sprint-artifacts
+
+# STATUS DEFINITIONS:
+# ==================
+# Epic Status:
+#   - backlog: Epic exists in epic file but not contexted
+#   - contexted: Epic tech context created (required before drafting stories)
+#
+# Story Status:
+#   - backlog: Story only exists in epic file
+#   - drafted: Story file created in stories folder
+#   - ready-for-dev: Draft approved and story context created
+#   - in-progress: Developer actively working on implementation
+#   - review: Under SM review (via code-review workflow)
+#   - done: Story completed
+#
+# Retrospective Status:
+#   - optional: Can be completed but not required
+#   - completed: Retrospective has been done
+#
+# WORKFLOW NOTES:
+# ===============
+# - Epics should be 'contexted' before stories can be 'drafted'
+# - Stories can be worked in parallel if team capacity allows
+# - SM typically drafts next story after previous one is 'done' to incorporate learnings
+# - Dev moves story to 'review', SM reviews, then Dev moves to 'done'
+
+generated: 2025-11-22T20:27:00Z
+project: ai PINN
+project_key: ai-pinn
+tracking_system: file-system
+story_location: docs/sprint-artifacts
+
+development_status:
+  # 史诗1: 基础设施和项目设置
+  epic-1: contexted
+  1-1-project-initialization: done
+  1-2-configuration-management: done
+  1-3-logging-monitoring: done
+  epic-1-retrospective: done
+
+  # 史诗2: PINN核心求解器
+  epic-2: contexted
+  2-1-pinn-basic-architecture: done
+  2-2-2d-convection-diffusion: done
+  2-3-boundary-conditions: backlog
+  2-4-heterogeneous-parameters: backlog
+  2-5-pinn-training-optimization: backlog
+  epic-2-retrospective: optional
+
+  # 史诗3: 不确定性量化系统
+  epic-3: backlog
+  3-1-mc-dropout-uncertainty: backlog
+  3-2-prediction-statistics: backlog
+  3-3-confidence-interval-risk: backlog
+  3-4-uncertainty-source-analysis: backlog
+  3-5-uncertainty-validation: backlog
+  epic-3-retrospective: optional
+
+  # 史诗4: 验证和对比框架
+  epic-4: backlog
+  4-1-traditional-numerical-methods: backlog
+  4-2-standard-benchmark-cases: backlog
+  4-3-prediction-error-statistics: backlog
+  4-4-convergence-mesh-independence: backlog
+  4-5-method-comparison-report: backlog
+  epic-4-retrospective: optional
+
+  # 史诗5: 可视化和报告系统
+  epic-5: backlog
+  5-1-concentration-visualization: backlog
+  5-2-uncertainty-visualization: backlog
+  5-3-time-series-evolution: backlog
+  5-4-risk-probability-distribution: backlog
+  5-5-result-export-reporting: backlog
+  epic-5-retrospective: optional
+
+  # 史诗6: 数据管理系统
+  epic-6: backlog
+  6-1-groundwater-data-import: backlog
+  6-2-noise-missing-values: backlog
+  6-3-model-parameter-management: backlog
+  6-4-experiment-export: backlog
+  6-5-multi-experiment-management: backlog
+  epic-6-retrospective: optional
+
+  # 史诗7: 性能优化和资源管理
+  epic-7: backlog
+  7-1-gpu-acceleration: backlog
+  7-2-memory-monitoring: backlog
+  7-3-batch-computation: backlog
+  7-4-resource-estimation: backlog
+  7-5-adaptive-parameter-adjustment: backlog
+  epic-7-retrospective: optional
+
+  # 史诗8: 用户交互界面
+  epic-8: backlog
+  8-1-model-parameter-interface: backlog
+  8-2-boundary-initial-conditions: backlog
+  8-3-uncertainty-method-selection: backlog
+  8-4-training-monitoring: backlog
+  8-5-custom-output-visualization: backlog
+  epic-8-retrospective: optional
+
+  # 史诗9: 扩展和集成框架
+  epic-9: backlog
+  9-1-bayesian-pnn-interface: backlog
+  9-2-new-uncertainty-methods: backlog
+  9-3-multiple-pollution-types: backlog
+  9-4-external-integration: backlog
+  9-5-plugin-functionality: backlog
+  epic-9-retrospective: optional

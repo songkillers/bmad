@@ -1,0 +1,16 @@
+# 模型特定配置
+# 继承自 base_config.yaml，覆盖模型相关设置
+
+extends: base_config.yaml
+
+model:
+  type: deep_pinn  # 覆盖基础配置中的 pinn
+  input_dim: 3        # 覆盖基础配置中的 2
+  output_dim: 2       # 覆盖基础配置中的 1
+  hidden_layers: [100, 100, 100]  # 覆盖基础配置中的 [50, 50, 50]
+  activation: relu      # 覆盖基础配置中的 tanh
+
+training:
+  epochs: 2000        # 覆盖基础配置中的 1000
+  learning_rate: 0.01  # 覆盖基础配置中的 0.001
+  # 保留 batch_size 和 optimizer 的默认值
